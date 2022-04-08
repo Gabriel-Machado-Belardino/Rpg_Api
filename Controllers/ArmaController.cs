@@ -2,10 +2,10 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using RpgApi.Data;
-using RpgApi.Models;
+using Rpg_Api.Data;
+using Rpg_Api.Models;
 
-namespace RpgApi.Controllers
+namespace Rpg_Api.Controllers
 {
     [ApiController]
     [Route("[controller]")]

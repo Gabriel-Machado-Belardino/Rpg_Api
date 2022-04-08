@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Rpg_Api.Models;
 using Rpg_Api.Models.Enuns;
+using Rpg_Api.Utils;
 
 namespace Rpg_Api.Data
 {

@@ -14,12 +14,11 @@ namespace Rpg_Api.Models
         public byte[] Foto { get; set;}
         public string Latitude { get; set;}
         public string Longitude { get; set;}
-        public DataTime? DataAcesso { get; set;}
+        public DateTime? DataAcesso { get; set;}
 
         [NotMapped]
         public string PasswordString { get; set;}
         public List<Personagem> Personagens { get; set;}
-        public int Id { get; set;}
 
 
     }

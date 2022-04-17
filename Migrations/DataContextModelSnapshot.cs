@@ -37,7 +37,8 @@ namespace Rpg_Api.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("PersonagemId");
+                    b.HasIndex("PersonagemId")
+                        .IsUnique();
 
                     b.ToTable("Armas");
 
@@ -311,8 +312,8 @@ namespace Rpg_Api.Migrations
                         new
                         {
                             Id = 1,
-                            PasswordHash = new byte[] { 4, 244, 81, 228, 56, 179, 175, 166, 187, 179, 204, 219, 199, 153, 73, 74, 234, 4, 194, 151, 178, 74, 207, 198, 130, 72, 139, 196, 182, 118, 224, 195, 98, 111, 3, 184, 143, 156, 38, 175, 131, 193, 155, 28, 146, 152, 114, 246, 170, 55, 201, 213, 227, 69, 8, 55, 35, 130, 107, 91, 101, 14, 80, 106 },
-                            PasswordSalt = new byte[] { 42, 204, 222, 202, 12, 216, 81, 57, 97, 55, 172, 96, 67, 9, 216, 53, 23, 95, 112, 77, 182, 13, 94, 209, 247, 48, 161, 44, 46, 125, 119, 46, 85, 184, 84, 82, 85, 255, 50, 221, 28, 110, 37, 149, 126, 80, 250, 29, 117, 225, 127, 96, 67, 136, 7, 99, 163, 73, 35, 139, 240, 237, 131, 161, 109, 68, 248, 214, 226, 98, 169, 222, 248, 83, 10, 21, 226, 45, 73, 98, 206, 156, 109, 230, 173, 198, 250, 224, 7, 95, 232, 48, 251, 144, 198, 157, 131, 7, 50, 19, 35, 83, 163, 119, 189, 159, 139, 61, 51, 149, 251, 15, 241, 67, 39, 24, 9, 206, 23, 20, 123, 122, 74, 231, 190, 95, 145, 170 },
+                            PasswordHash = new byte[] { 104, 169, 228, 220, 147, 42, 195, 61, 64, 226, 37, 48, 103, 75, 62, 63, 128, 206, 112, 27, 219, 209, 133, 179, 173, 116, 60, 6, 233, 115, 165, 232, 73, 232, 130, 90, 99, 154, 247, 65, 222, 3, 252, 104, 234, 14, 129, 125, 21, 186, 176, 232, 18, 66, 184, 109, 109, 244, 125, 138, 205, 26, 116, 56 },
+                            PasswordSalt = new byte[] { 134, 210, 13, 95, 87, 52, 29, 229, 134, 30, 133, 246, 85, 82, 4, 138, 115, 60, 163, 48, 144, 11, 219, 29, 239, 69, 180, 176, 75, 164, 3, 173, 242, 190, 3, 85, 116, 36, 18, 101, 54, 232, 148, 106, 51, 183, 184, 209, 205, 242, 106, 217, 246, 230, 141, 63, 159, 59, 122, 178, 1, 223, 194, 45, 143, 88, 29, 208, 237, 97, 118, 89, 231, 207, 89, 203, 180, 126, 128, 120, 239, 125, 93, 116, 121, 107, 159, 176, 31, 91, 127, 223, 9, 57, 205, 240, 237, 232, 75, 71, 113, 67, 89, 100, 71, 65, 15, 247, 130, 220, 83, 146, 108, 190, 90, 231, 143, 221, 52, 160, 119, 91, 110, 166, 105, 182, 103, 87 },
                             Username = "UsuarioAdmin"
                         });
                 });
@@ -320,8 +321,8 @@ namespace Rpg_Api.Migrations
             modelBuilder.Entity("Rpg_Api.Models.Arma", b =>
                 {
                     b.HasOne("Rpg_Api.Models.Personagem", "Personagem")
-                        .WithMany()
-                        .HasForeignKey("PersonagemId")
+                        .WithOne("Arma")
+                        .HasForeignKey("Rpg_Api.Models.Arma", "PersonagemId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -346,7 +347,7 @@ namespace Rpg_Api.Migrations
                         .IsRequired();
 
                     b.HasOne("Rpg_Api.Models.Personagem", "Personagem")
-                        .WithMany()
+                        .WithMany("PersonagemHabilidade")
                         .HasForeignKey("PersonagemId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -359,6 +360,13 @@ namespace Rpg_Api.Migrations
             modelBuilder.Entity("Rpg_Api.Models.Habilidade", b =>
                 {
                     b.Navigation("PersonagemHabilidades");
+                });
+
+            modelBuilder.Entity("Rpg_Api.Models.Personagem", b =>
+                {
+                    b.Navigation("Arma");
+
+                    b.Navigation("PersonagemHabilidade");
                 });
 
             modelBuilder.Entity("Rpg_Api.Models.Usuario", b =>

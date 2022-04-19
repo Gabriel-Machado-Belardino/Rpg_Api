@@ -86,5 +86,52 @@ namespace Rpg_Api.Controllers
 
         }
         
+
+        [HttpPut("AlterarSenha")]
+        public async Task<IActionResult> AlterarSenha(Usuario ModUser)
+        {
+            try
+            {
+                Usuario usuario = await _context.Usuarios.FirstOrDefaultAsync(x => x.Username.ToLower().Equals(ModUser.Username.ToLower()));
+                usuario = await _context.Usuarios.FirstOrDefaultAsync(x => x.Id == ModUser.Id);
+
+                if(usuario == null)
+                {
+                    throw new System.Exception("Usuário não encontrado. ");
+                }
+
+                Criptografia.CriarPasswordHash(ModUser.PasswordString, out byte[] hash, out byte[] salt);
+                ModUser.PasswordHash = hash;
+                ModUser.PasswordSalt = salt;
+
+                _context.Usuarios.Update(usuario);
+                int linhasAfetadas = await _context.SaveChangesAsync();
+                return Ok(linhasAfetadas);
+
+            }
+            catch(System.Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+
+        }
+
+        [HttpGet("GetAll")]
+        public async Task<IActionResult> GetAll()
+        {
+            try
+            {
+                List<Usuario> AllUser = await _context.Usuarios.ToListAsync();
+                return Ok(AllUser);
+
+            }
+            catch(System.Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+
+        }
+
+
     }//Fim da classe <<<UsuariosController>>>
 }

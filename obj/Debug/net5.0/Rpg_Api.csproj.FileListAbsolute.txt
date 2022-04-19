@@ -238,3 +238,6 @@ F:\Rpg_Api\obj\Debug\net5.0\Rpg_Api.dll
 F:\Rpg_Api\obj\Debug\net5.0\ref\Rpg_Api.dll
 F:\Rpg_Api\obj\Debug\net5.0\Rpg_Api.pdb
 F:\Rpg_Api\obj\Debug\net5.0\Rpg_Api.genruntimeconfig.cache
+D:\Documentos\Etec\VS code\Rpg_Api\bin\Debug\net5.0\Microsoft.AspNetCore.JsonPatch.dll
+D:\Documentos\Etec\VS code\Rpg_Api\bin\Debug\net5.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+D:\Documentos\Etec\VS code\Rpg_Api\bin\Debug\net5.0\Newtonsoft.Json.Bson.dll

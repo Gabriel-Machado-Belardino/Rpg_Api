@@ -132,6 +132,6 @@ namespace Rpg_Api.Controllers
 
         }
 
-
+        
     }//Fim da classe <<<UsuariosController>>>
 }

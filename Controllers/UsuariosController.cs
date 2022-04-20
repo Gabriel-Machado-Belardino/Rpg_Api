@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using System;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -76,6 +77,9 @@ namespace Rpg_Api.Controllers
                 }
                 else
                 {
+                    usuario.DataAcesso = DateTime.Now;
+                    _context.Usuarios.Update(usuario);
+                    int linhasAfetadas = await _context.SaveChangesAsync();
                     return Ok(usuario.Id);
                 }
             }
@@ -92,22 +96,21 @@ namespace Rpg_Api.Controllers
         {
             try
             {
-                Usuario usuario = await _context.Usuarios.FirstOrDefaultAsync(x => x.Username.ToLower().Equals(ModUser.Username.ToLower()));
-                usuario = await _context.Usuarios.FirstOrDefaultAsync(x => x.Id == ModUser.Id);
+                Usuario modUsuario = await _context.Usuarios.FirstOrDefaultAsync(x => x.Username.ToLower().Equals(ModUser.Username.ToLower()));
 
-                if(usuario == null)
+                if(modUsuario == null)
                 {
                     throw new System.Exception("Usuário não encontrado. ");
                 }
 
                 Criptografia.CriarPasswordHash(ModUser.PasswordString, out byte[] hash, out byte[] salt);
-                ModUser.PasswordHash = hash;
-                ModUser.PasswordSalt = salt;
+                modUsuario.PasswordHash = hash;
+                modUsuario.PasswordSalt = salt;
 
-                _context.Usuarios.Update(usuario);
+                _context.Usuarios.Update(modUsuario);
                 int linhasAfetadas = await _context.SaveChangesAsync();
                 return Ok(linhasAfetadas);
-
+                
             }
             catch(System.Exception ex)
             {

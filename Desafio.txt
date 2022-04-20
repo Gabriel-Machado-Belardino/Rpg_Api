@@ -1,0 +1,27 @@
+OK    1) Criar um método Put com rota “AlterarSenha” na classe UsuariosController.cs que criptografe e altere a senha do usuário no banco e faça com que ele consiga autenticar.
+
+OK    2) Criar um método Get para listar todos os Usuarios na classe UsuariosController.cs
+
+OK    3) Na classe UsuariosController.cs, altere o método autenticar para que na linha anterior ao retornar o Id, a propriedade data de acesso seja alimentada com a data/hora atual 
+         e salvar alterações no Banco via EF.
+
+OK    4) Inserir no método GetSingle da controller de personagem uma forma de exibir o usuário que o personagem pertence.
+
+OK    5) Criar um método na classe PersonagemHabilidadesController.cs que retorne uma lista de PersonagemHabilidade de acordo com o id do personagem passado por parâmetro. 
+
+OK    6) Criar um método na classe PersonagemHabilidadesController.cs  que retorne uma lista de Habilidades com a rota chamada GetHabilidades.  
+
+OK    7) Criar um método na controller PersonagemHabilidadesController.cs que remova os dados da tabela PersonagemHabilidades. Esse método terá que ser do tipo Post 
+(com rota chamada DeletePersonagemHabilidade) pelo fato de ter que receber o objeto como parâmetro, contendo o id do personagem e da habilidade. Use o FirstOrDefaultAsync que 
+exige o using System.Linq.
+
+
+TESTES:
+
+1 - FUNCIONANDO
+2 - FUNCIONANDO
+3 - FUNCIONANDO
+4 - FUNCIONANDO
+5 - FUNCIONANDO
+6 - FUNCIONANDO
+7 - FUNCIONANDO

@@ -8,6 +8,9 @@ using System.Collections.Generic;
 
 using Microsoft.AspNetCore.Authorization;
 
+using System.Linq;
+using System.Security.Claims;
+
 namespace Rpg_Api.Controllers
 {
     [Authorize]
@@ -51,6 +54,23 @@ namespace Rpg_Api.Controllers
             try
             {
                 List<Personagem> lista = await _context.Personagens.ToListAsync();
+                return Ok(lista);
+            }
+            catch(Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpGet("GetbyUser")]
+        public async Task<IActionResult> GetbyUser()
+        {
+
+            try
+            {
+                int id = int.Parse(User.Claims.FirstOrDefaultAsync(c => c.Type == ClaimTypes.NameIdentifier).Value);
+
+                List<Personagem> lista = await _context.Personagens.Where(u => u.Usuario.Id == id).ToListAsync();
                 return Ok(lista);
             }
             catch(Exception ex)

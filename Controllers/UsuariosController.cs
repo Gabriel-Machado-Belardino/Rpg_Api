@@ -7,6 +7,12 @@ using Rpg_Api.Data;
 using Rpg_Api.Models;
 using Rpg_Api.Utils;
 
+using Microsoft.Extensions.Configuration;
+using System.Security.Claims;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
+using System.IdentityModel.Tokens.Jwt;
+
 namespace Rpg_Api.Controllers
 {
 
@@ -18,9 +24,12 @@ namespace Rpg_Api.Controllers
         
         private readonly  DataContext _context;
 
-        public UsuariosController(DataContext context)
+        private readonly IConfiguration _configuration;
+
+        public UsuariosController(DataContext context, IConfiguration configuration)
         {
             _context = context;
+            _configuration = configuration;
         }
 
 
@@ -32,6 +41,29 @@ namespace Rpg_Api.Controllers
             }
             return false;
 
+        }
+
+        private string CriarToken(Usuario usuario)
+        {
+            List<Claim> claims = new List<Claim>
+            {
+                new Claim(ClaimTypes.NameIdentifier, usuario.Id.ToString()),
+                new Claim(ClaimTypes.Name, usuario.Username)
+            };
+            SymmetricSecurityKey key = new SymmetricSecurityKey(Encoding.UTF8
+            .GetBytes(_configuration.GetSection("ConfiguracaoToken:Chave").Value));
+
+            SigningCredentials creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha512Signature);
+            SecurityTokenDescriptor tokenDescriptor = new SecurityTokenDescriptor
+            {
+                Subject = new ClaimsIdentity(claims),
+                Expires = DateTime.Now.AddDays(1),
+                SigningCredentials = creds
+            };
+            JwtSecurityTokenHandler tokenHandler = new JwtSecurityTokenHandler();
+            SecurityToken token = tokenHandler.CreateToken(tokenDescriptor);
+
+            return tokenHandler.WriteToken(token);
         }
 
 
@@ -80,7 +112,9 @@ namespace Rpg_Api.Controllers
                     usuario.DataAcesso = DateTime.Now;
                     _context.Usuarios.Update(usuario);
                     int linhasAfetadas = await _context.SaveChangesAsync();
-                    return Ok(usuario.Id);
+
+
+                    return Ok(CriarToken(usuario));
                 }
             }
             catch(System.Exception ex)

@@ -6,8 +6,11 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 
+using Microsoft.AspNetCore.Authorization;
+
 namespace Rpg_Api.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("[Controller]")]
 

@@ -245,3 +245,4 @@ D:\Gabriel Machado 2DS 2022\Ds\RPG_API\bin\Debug\net5.0\Microsoft.AspNetCore.Jso
 D:\Gabriel Machado 2DS 2022\Ds\RPG_API\bin\Debug\net5.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
 D:\Gabriel Machado 2DS 2022\Ds\RPG_API\bin\Debug\net5.0\Newtonsoft.Json.Bson.dll
 D:\Gabriel Machado 2DS 2022\Ds\RPG_API\bin\Debug\net5.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+D:\Documentos\Etec\VS code\RPG_API\bin\Debug\net5.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll

@@ -68,7 +68,7 @@ namespace Rpg_Api.Controllers
 
             try
             {
-                int id = int.Parse(User.Claims.FirstOrDefaultAsync(c => c.Type == ClaimTypes.NameIdentifier).Value);
+                int id = int.Parse(User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier).Value);
 
                 List<Personagem> lista = await _context.Personagens.Where(u => u.Usuario.Id == id).ToListAsync();
                 return Ok(lista);

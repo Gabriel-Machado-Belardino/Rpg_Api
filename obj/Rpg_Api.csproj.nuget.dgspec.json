@@ -1,32 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Gabriel Machado 2DS 2022\\Ds\\RPG_API\\Rpg_Api.csproj": {}
+    "D:\\Documentos\\Etec\\VS code\\RPG_API\\Rpg_Api.csproj": {}
   },
   "projects": {
-    "D:\\Gabriel Machado 2DS 2022\\Ds\\RPG_API\\Rpg_Api.csproj": {
+    "D:\\Documentos\\Etec\\VS code\\RPG_API\\Rpg_Api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Gabriel Machado 2DS 2022\\Ds\\RPG_API\\Rpg_Api.csproj",
+        "projectUniqueName": "D:\\Documentos\\Etec\\VS code\\RPG_API\\Rpg_Api.csproj",
         "projectName": "Rpg_Api",
-        "projectPath": "D:\\Gabriel Machado 2DS 2022\\Ds\\RPG_API\\Rpg_Api.csproj",
-        "packagesPath": "C:\\Users\\Aluno\\.nuget\\packages\\",
-        "outputPath": "D:\\Gabriel Machado 2DS 2022\\Ds\\RPG_API\\obj\\",
+        "projectPath": "D:\\Documentos\\Etec\\VS code\\RPG_API\\Rpg_Api.csproj",
+        "packagesPath": "C:\\Users\\gmbel\\.nuget\\packages\\",
+        "outputPath": "D:\\Documentos\\Etec\\VS code\\RPG_API\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\",
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
-          "C:\\Users\\Aluno\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+          "C:\\Users\\gmbel\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net5.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -94,7 +87,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.101\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.102\\RuntimeIdentifierGraph.json"
         }
       }
     }

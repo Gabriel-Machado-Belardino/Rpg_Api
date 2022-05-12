@@ -19,6 +19,8 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 
+using Microsoft.AspNetCore.Http; 
+
 namespace Rpg_Api
 {
     public class Startup
@@ -35,8 +37,10 @@ namespace Rpg_Api
         {
 
             //deixar o curso aqui
-            services.AddDbContext<DataContext>(x => x.UseSqlServer(Configuration.GetConnectionString("ConexaoLocal")));
+            services.AddDbContext<DataContext>(x => x.UseSqlServer(Configuration.GetConnectionString("ConexaoSomee")));
             services.AddControllers();
+
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             .AddJwtBearer(options =>

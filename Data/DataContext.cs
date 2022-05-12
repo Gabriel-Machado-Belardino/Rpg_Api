@@ -73,7 +73,9 @@ namespace Rpg_Api.Data
                 new PersonagemHabilidade() { PersonagemId = 6, HabilidadeId =2 }, 
                 new PersonagemHabilidade() { PersonagemId = 7, HabilidadeId =3 }                               
             );
+            
 
+            modelBuilder.Entity<Usuario>().Property(u => u.Perfil).HasDefaultValue("Jogador");
 
         }//Fim OnModelCreating
 

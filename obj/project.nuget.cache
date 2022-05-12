@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "WUfgo9S12QXsvlTqLZfSU+ZtvI0Hil4KHt+Rfwg0NGOyQuYLXkWNSy4PrAOiI5FEZ4hfTNSQGEId+5QS1m2pRw==",
+  "dgSpecHash": "IXeW/KGcrKKOVRMLB3jFdO6kVJAYQ8XXYb/CRV+cKZ8NTKyyfIL1pooDk4cz0fxy9Ia+GchQW9yxUqxMTMsafQ==",
   "success": true,
   "projectFilePath": "D:\\Documentos\\Etec\\VS code\\RPG_API\\Rpg_Api.csproj",
   "expectedPackageFiles": [
@@ -105,7 +105,8 @@
     "C:\\Users\\gmbel\\.nuget\\packages\\system.xml.readerwriter\\4.3.0\\system.xml.readerwriter.4.3.0.nupkg.sha512",
     "C:\\Users\\gmbel\\.nuget\\packages\\system.xml.xdocument\\4.3.0\\system.xml.xdocument.4.3.0.nupkg.sha512",
     "C:\\Users\\gmbel\\.nuget\\packages\\system.xml.xmldocument\\4.3.0\\system.xml.xmldocument.4.3.0.nupkg.sha512",
-    "C:\\Users\\gmbel\\.nuget\\packages\\system.xml.xmlserializer\\4.3.0\\system.xml.xmlserializer.4.3.0.nupkg.sha512"
+    "C:\\Users\\gmbel\\.nuget\\packages\\system.xml.xmlserializer\\4.3.0\\system.xml.xmlserializer.4.3.0.nupkg.sha512",
+    "C:\\Users\\gmbel\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\5.0.16\\microsoft.netcore.app.host.win-x64.5.0.16.nupkg.sha512"
   ],
   "logs": []
 }

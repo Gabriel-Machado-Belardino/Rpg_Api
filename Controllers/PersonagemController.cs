@@ -11,19 +11,33 @@ using Microsoft.AspNetCore.Authorization;
 using System.Linq;
 using System.Security.Claims;
 
+using Microsoft.AspNetCore.Http;
+
 namespace Rpg_Api.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Jogador, Admin")]
     [ApiController]
     [Route("[Controller]")]
 
     public class PersonagemController : ControllerBase
     {
         private readonly DataContext _context;
+        private readonly IHttpContextAccessor _httpContextAccessor;
 
-        public PersonagemController (DataContext context)
+        public PersonagemController (DataContext context, IHttpContextAccessor httpContextAccessor)
         {
             _context = context;
+            _httpContextAccessor = httpContextAccessor;
+        }
+
+        private int ObterUsuarioId()
+        {
+            return int.Parse(_httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier));
+        }
+
+        private string ObterPerfilUsuario()
+        {
+            return _httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.Role);
         }
 
 
@@ -79,6 +93,30 @@ namespace Rpg_Api.Controllers
             }
         }
 
+        [HttpGet("GetByPerfil")]
+        public async Task<IActionResult> GetByPerfilAsync()
+        {
+
+            try
+            {
+                List<Personagem> lista = new List<Personagem>();
+
+                if(ObterPerfilUsuario() == "Admin")
+                    lista = await _context.Personagens.ToListAsync();
+                else
+                {
+                    lista = await _context.Personagens.Where(p => p.Usuario.Id == ObterUsuarioId()).ToListAsync();
+                }
+
+                return Ok(lista);
+            }
+            catch (System.Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+            
+        }
+
         [HttpPost]
         public async Task<IActionResult> Add(Personagem novoPersonagem)
         {
@@ -88,6 +126,9 @@ namespace Rpg_Api.Controllers
                 {
                     throw new Exception("Pontos de vida não pode ser maior que 100");
                 }
+
+                novoPersonagem.Usuario = _context.Usuarios.FirstOrDefault(uBusca => uBusca.Id == ObterUsuarioId());
+
                 await _context.Personagens.AddAsync(novoPersonagem);
                 await _context.SaveChangesAsync();
 
@@ -108,6 +149,9 @@ namespace Rpg_Api.Controllers
                 {
                     throw new Exception("Pontos de vida não pode ser maior que 100");
                 }
+
+                novoPersonagem.Usuario = _context.Usuarios.FirstOrDefault(uBusca => uBusca.Id == ObterUsuarioId());
+
                 _context.Personagens.Update(novoPersonagem);
                 int linhasAfetadas = await _context.SaveChangesAsync();
 

@@ -23,5 +23,7 @@ namespace Rpg_Api.Models
 
         //[Required]
         public string Perfil { get; set;}
+        
+        public string Email { get; set; }
     }
 }

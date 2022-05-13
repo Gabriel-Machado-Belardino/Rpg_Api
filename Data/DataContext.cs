@@ -18,6 +18,7 @@ namespace Rpg_Api.Data
         public DbSet<Usuario> Usuarios { get; set;}
         public DbSet<Habilidade> Habilidades { get; set;}
         public DbSet<PersonagemHabilidade> PersonagemHabilidades { get; set;}
+        public DbSet<Disputa> Disputas {get; set;}
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -76,6 +77,7 @@ namespace Rpg_Api.Data
             
 
             modelBuilder.Entity<Usuario>().Property(u => u.Perfil).HasDefaultValue("Jogador");
+
 
         }//Fim OnModelCreating
 

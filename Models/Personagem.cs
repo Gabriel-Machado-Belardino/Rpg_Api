@@ -13,6 +13,9 @@ namespace Rpg_Api.Models
         public int Forca { get; set; }
         public int Defesa { get; set; }
         public int Inteligencia { get; set; }
+        public int Disputas { get; set; }
+        public int Vitorias { get; set; }
+        public int Derrotas { get; set; }
 
         public ClassEnum Classe { get; set; }
 

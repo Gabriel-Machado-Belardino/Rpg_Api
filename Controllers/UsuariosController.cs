@@ -128,7 +128,7 @@ namespace Rpg_Api.Controllers
 
         }
         
-
+        
         [HttpPut("AlterarSenha")]
         public async Task<IActionResult> AlterarSenha(Usuario ModUser)
         {

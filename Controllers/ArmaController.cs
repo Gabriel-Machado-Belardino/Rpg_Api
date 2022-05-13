@@ -5,17 +5,30 @@ using Microsoft.EntityFrameworkCore;
 using Rpg_Api.Data;
 using Rpg_Api.Models;
 
+using Microsoft.AspNetCore.Http;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Authorization;
+
 namespace Rpg_Api.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("[controller]")]
     public class ArmasController : ControllerBase
     {
         private readonly DataContext _context;//Declaração contexto do Banco
 
-        public ArmasController(DataContext context)
+        private readonly IHttpContextAccessor _httpContextAccessor;
+
+        public ArmasController(DataContext context, IHttpContextAccessor httpContextAccessor)
         {
             _context = context; //inicialização do contexto do banco
+            _httpContextAccessor = httpContextAccessor;
+        }
+
+        private int ObterUsuarioId()
+        {
+            return int.Parse(_httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier));
         }
 
         [HttpGet("{id}")] //Buscar pelo id

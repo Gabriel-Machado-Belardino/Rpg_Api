@@ -67,7 +67,7 @@ namespace Rpg_Api.Controllers
 
             try
             {
-                List<Personagem> lista = await _context.Personagens.ToListAsync();
+                List<Personagem> lista = await _context.Personagens.Include(a => a.Arma).ToListAsync();
                 return Ok(lista);
             }
             catch(Exception ex)

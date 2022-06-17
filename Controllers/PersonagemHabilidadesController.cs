@@ -52,7 +52,7 @@ namespace Rpg_Api.Controllers
             }
         }
 
-        [HttpGet("list/{id}")]
+        [HttpGet("{id}")]
         public async Task<IActionResult> ListHabilitsbyCaracterId(int Id)
         {
             try

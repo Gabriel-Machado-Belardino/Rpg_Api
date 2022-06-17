@@ -57,6 +57,7 @@ namespace Rpg_Api.Controllers
                 }
                 if (oponente.PontosVida <= 0)
                 {
+                    oponente.PontosVida = 0;
                     d.Narracao = $"{oponente.Nome} foi derrotado!";
                 }
 
@@ -111,8 +112,10 @@ namespace Rpg_Api.Controllers
                     if(dano > 0)
                         oponente.PontosVida = oponente.PontosVida - dano;
                     if(oponente.PontosVida <= 0)
+                    {
+                        oponente.PontosVida = 0;
                         d.Narracao += $"{oponente.Nome} foi derrotado";
-                    
+                    }
                     _context.Personagens.Update(oponente);
                     await _context.SaveChangesAsync();
 
@@ -184,7 +187,10 @@ namespace Rpg_Api.Controllers
                         if (dano > 0)
                         {
                             oponente.PontosVida = oponente.PontosVida - (int)dano;
+                            if(oponente.PontosVida < 0)
+                                oponente.PontosVida = 0;
                         }
+                        
                         //formata a mensagem
                         resultado = string.Format("{0} atacou {1} usando {2} com o dano {3}.", atacante.Nome, oponente.Nome, ataqueUsado, dano);
                         d.Narracao += resultado;
@@ -204,6 +210,8 @@ namespace Rpg_Api.Controllers
 
                         if (dano > 0)
                             oponente.PontosVida = oponente.PontosVida - (int)dano;
+                        if(oponente.PontosVida < 0)
+                                oponente.PontosVida = 0;
 
                         resultado = string.Format("{0} atacou {1} usando {2} com o dano {3}.", atacante.Nome, oponente.Nome, ataqueUsado, dano);
                         d.Narracao += resultado;
